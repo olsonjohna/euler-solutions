@@ -774,8 +774,70 @@
 
 	}
 
-	function problem19() {
 
+	/*
+	You are given the following information, but you may prefer to do some research for yourself.
+	1 Jan 1900 was a Monday.
+	Thirty days has September,
+	April, June and November.
+	All the rest have thirty-one,
+	Saving February alone,
+	Which has twenty-eight, rain or shine.
+	And on leap years, twenty-nine.
+	A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+	How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+	*/
+	function problem19() {
+		$months = array(
+			'jan' => 31,
+			'feb' => 31,
+			'mar' => 28,
+			'apr' => 31,
+			'may' => 30,
+			'jun' => 31,
+			'jul' => 30,
+			'aug' => 31,
+			'sep' => 31,
+			'oct' => 30,
+			'nov' => 31,
+			'dec' => 30
+			);
+
+		// Start 30 days behind our expected start day so the first Dec-Jan is accomodated for.
+		$dayCount = -30;
+		$sundaysOnTheFirst = 0;
+		for ($i = 1900; $i <= 2000; $i++) {
+			$isLeapYear = false;
+			// Years divisible by 4 are leap years.
+			if (($i % 4) == 0) {
+				// Years divisible by 100 aren't leap years...
+				if (($i % 100) == 0) {
+					// ...unless they're divisible by 400, too.
+					if (($i % 400) == 0) {
+						$isLeapYear = true;
+					}
+				}
+				else {
+					$isLeapYear = true;
+				}
+			}
+
+			foreach ($months as $month => $previousMonthDays) {
+				// Add a day to accomodate for leap year.
+				if ($month == 'mar' && $isLeapYear) {
+					$previousMonthDays = $previousMonthDays + 1;
+				}
+
+				$dayCount = $dayCount + $previousMonthDays;
+
+				// Started the number count so that if modulus of the day count is 0 the day is a Sunday.
+				if ( $i != 1900 && (($dayCount % 7) == 0)) {
+					$sundaysOnTheFirst++;
+				}
+			}
+		}
+
+		echo $sundaysOnTheFirst;
 	}
 
 	/*
