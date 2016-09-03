@@ -243,7 +243,7 @@
 	function problem9() {
 		// c should have the highest value, so we'll set it first.
 		for ($c=998; $c >= 1; $c--) {
-			// a and b will split the remainder. We'll set b to it's max possible value, then increment a and 
+			// a and b will split the remainder. We'll set b to its max possible value, then increment a and 
 			// decrement b as we loop through possible values.
 			$b = 1000 - $c - 1;
 			$a = 1;
@@ -616,7 +616,6 @@
 	numbers is in compliance with British usage.
 	*/
 	function problem17() {
-		//TODO: Complete this.
 		$totalLetters = 0;
 		for ($i = 1; $i < 1000; $i++) { 
 			$num = (string) $i;
@@ -662,7 +661,7 @@
 			}
 
 			// Add three characters for "and" between hundreds and tens.
-			if ($numArray[0] != 0) {
+			if ($numArray[0] != 0 && ($numArray[1] != 0 || $numArray[2] != 0)) {
 				$totalLetters = $totalLetters + 3;
 			}
 
@@ -691,7 +690,7 @@
 							$totalLetters = $totalLetters + 9;
 							break;
 						case '8':
-							$totalLetters = $totalLetters + 9;
+							$totalLetters = $totalLetters + 8;
 							break;
 						case '9':
 							$totalLetters = $totalLetters + 8;
