@@ -411,6 +411,7 @@
 	triangle number to have over five hundred divisors?
 	*/
 	function problem12() {
+		//TODO: Performance.
 		$num = 1;
 		$divisors = 0;
 		$sum = 0;
@@ -430,7 +431,7 @@
 			$num++;
 		}
 
-		$triangleNumber;
+		echo $triangleNumber;
 	}
 
 	/*
@@ -609,7 +610,7 @@
 		$numArray = str_split($numString);
 
 		$sum = 0;
-		foreach ($numberString as $number) {
+		foreach ($numArray as $number) {
 			$sum = $sum + $number;
 		}
 
