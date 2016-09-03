@@ -86,6 +86,7 @@
 	numbers is 9009 = 91 × 99. Find the largest palindrome made from the product of two 3-digit numbers.
 	*/
 	function problem4() {
+		$product = '';
 		for ($a = 999; $a > 100; $a--) { 
 			for ($b = $a - 1; $b > 900; $b--) {
 				$product = (string)($a * $b);
@@ -98,8 +99,8 @@
 							break;
 						}
 						if ($i == (($length / 2) - 1)) {
-							echo $product;
-							exit;
+							// We've found the solution. Break out of all loops.
+							break 3;
 						}
 					}
 				}
@@ -110,14 +111,16 @@
 							break;
 						}
 						if ($i == (($length - 1) / 2) - 1) {
-							echo $product;
-							exit;
+							// We've found the solution. Break out of all loops.
+							break 3;
 						}
 					}
 				}
 
 			}
 		}
+
+		echo $product;
 	}
 
 	/*
@@ -143,6 +146,7 @@
 				}
 			}
 		}
+
 		echo $num;
 	}
 
@@ -239,8 +243,11 @@
 	3^2 + 4^2 = 9 + 16 = 25 = 5^2. There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find 
 	the product abc.
 	*/
-
 	function problem9() {
+		$a = 0;
+		$b = 0;
+		$c = 0;
+
 		// c should have the highest value, so we'll set it first.
 		for ($c=998; $c >= 1; $c--) {
 			// a and b will split the remainder. We'll set b to its max possible value, then increment a and 
@@ -249,13 +256,15 @@
 			$a = 1;
 			while ($b > $a) {
 				if ((($a * $a) + ($b * $b)) == ($c * $c)) {
-					echo $a * $b * $c;
-					exit;
+					// We've found the solution. Break out of all loops. 
+					break 2;
 				}
 				$a++;
 				$b--;
 			}
 		}
+
+		echo $a * $b * $c;
 	}
 
 	/*
@@ -401,7 +410,6 @@
 	We can see that 28 is the first triangle number to have over five divisors. What is the value of the first 
 	triangle number to have over five hundred divisors?
 	*/
-
 	function problem12() {
 		$num = 1;
 		$divisors = 0;
@@ -846,6 +854,7 @@
 			}
 			$useSumArray = true;
 		}
+
 		echo $sumArray[0][0];
 	}
 
