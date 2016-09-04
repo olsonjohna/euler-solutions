@@ -417,13 +417,15 @@
 		$divisors = 0;
 		$sum = 0;
 
-		while ($divisors < 500) {
+		while ($divisors < 50) {
 			$divisors = 0;
 			$triangleNumber = $sum + $num;
 
 			for ($i = $triangleNumber; $i > 0; $i--) {
 				if (($triangleNumber % $i) == 0) {
+					print $i .' ';
 					$divisors++;
+					print $divisors . ' ';
 				}
 			}
 
@@ -598,7 +600,27 @@
 	exactly 6 routes to the bottom right corner. How many such routes are there through a 20×20 grid?
 	*/
 	function problem15() {
+		// Note: I was struggling with this puzzle, so found the hint that Pascal's triangle would be helpful to
+		// determine the solution to this puzzle.
 
+		$pascalsTriangle = array();
+		$pascalsTriangle[0] = array(1);
+
+		// Build up Pascal's triangle. Because the grid is 20 high and 20 wide, we want to run to 40 rows.
+		for ($i = 1; $i <= 40; $i++) {
+			foreach ($pascalsTriangle[$i-1] as $key => $value) {
+				// Add the value of the two adjacent values in the previous row.
+				$a = array_key_exists(($key-1), $pascalsTriangle[$i-1]) ? $pascalsTriangle[$i-1][$key-1] : 0;
+				$b = $pascalsTriangle[$i-1][$key];
+				$pascalsTriangle[$i][$key] = $a + $b;
+			}
+
+			// Add the final value to the row of the triangle. It will always be 1.
+			$pascalsTriangle[$i][count($pascalsTriangle[$i])] = 1;
+		}
+
+		// The value is the highest value (at the middle of the last row of Pascal's triangle).
+		echo $pascalsTriangle[40][(count($pascalsTriangle[40])/2)];
 	}
 
 	/*
