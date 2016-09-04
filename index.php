@@ -417,15 +417,13 @@
 		$divisors = 0;
 		$sum = 0;
 
-		while ($divisors < 50) {
+		while ($divisors < 500) {
 			$divisors = 0;
 			$triangleNumber = $sum + $num;
 
 			for ($i = $triangleNumber; $i > 0; $i--) {
 				if (($triangleNumber % $i) == 0) {
-					print $i .' ';
 					$divisors++;
-					print $divisors . ' ';
 				}
 			}
 
