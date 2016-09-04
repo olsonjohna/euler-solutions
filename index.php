@@ -47,8 +47,9 @@
 			if ((($a + $b) % 2) == 0) {
 				$sum = $sum + $a + $b;
 			}
-			$a = $b;
+			$aNew = $b;
 			$b = $a + $b;
+			$a = $aNew;
 		}
 
 		echo $sum;
