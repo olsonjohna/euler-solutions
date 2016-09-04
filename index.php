@@ -129,7 +129,6 @@
 	What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 	*/
 	function problem5() {
-		//TODO: Perfomance.
 		// Begin with 2520. Logically, if 1-10 divides evenly into 2520, 1-20 must be higher.
 		$num = 2520;
 		$continue = true;
@@ -140,8 +139,8 @@
 			// If a number is divisible by 20, it's obvious it's divisible by 10, too.
 			for ($i = 11; $i <= 20; $i++) { 
 				if (($num % $i) != 0) {
-					// Increment by 2, because the number must be divisible by 2.
-					$num = $num + 2;
+					// Increment by 20, because the number must be divisible by 20.
+					$num = $num + 20;
 					$continue = true;
 					break;
 				}
